@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight ="15dp"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_foursquare_name"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:textSize="18dp" >
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:weightSum="1"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_foursquare_address"
+            android:textSize="13dp" >
+        </TextView>
+        <TextView
+            android:id="@+id/tv_foursquare_distance"
+            android:textStyle="bold"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:gravity="right|bottom"
+            android:textSize="13dp" >
+        </TextView>
+    </LinearLayout>
+
+    </LinearLayout>

@@ -1,0 +1,13 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header
+        android:fragment="yong.dealer.SettingsActivity$GeneralPreferenceFragment"
+        android:title="@string/pref_header_general" />
+    <header
+        android:fragment="yong.dealer.SettingsActivity$NotificationPreferenceFragment"
+        android:title="@string/pref_header_notifications" />
+    <header
+        android:fragment="yong.dealer.SettingsActivity$MessagingPreferenceFragment"
+        android:title="@string/pref_header_messaging" />        
+
+</preference-headers>
