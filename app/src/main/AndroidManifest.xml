@@ -6,7 +6,7 @@
         android:name="yong.dealer.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="yong.maptest.permission.C2D_MESSAGE" />
+    <uses-permission android:name="yong.dealer.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -30,7 +30,14 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
-        <activity android:name="yong.dealer.login.Login"
+        <provider
+            android:name="yong.dealer.shopping.data.ShoppingProvider"
+            android:authorities="yong.dealer.shopping"
+            android:exported="false" >
+        </provider>
+
+        <activity android:name="yong.dealer.shopping.ShoppingActivity"
+            android:theme="@style/Theme.AppCompat.Light"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
