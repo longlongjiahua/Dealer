@@ -51,7 +51,7 @@ public class InventoryFragment extends Fragment implements LoaderManager.LoaderC
 
     private static final String SELECTED_KEY = "selected_position";
 
-    private static final int FORECAST_LOADER = 0;
+    private static final int INVENTORY_LOADER = 0;
 
     public static final String[] INVENTORY_COLUMNS = {
             ShoppingContract.InventoryEntry.TABLE_NAME+ "." + ShoppingContract.InventoryEntry._ID,
@@ -66,13 +66,6 @@ public class InventoryFragment extends Fragment implements LoaderManager.LoaderC
     static final int COL_INVENTORY_ID   = 0;
     static final int COL_INVENTORY_CATEGORY_ID  = 1;
     static final int COL_INVENTORY_NAME   = 2;
-
-
-
-
-
-
-
     /**
      * A callback interface that all activities containing this fragment must
      * implement. This mechanism allows activities to be notified of item
@@ -170,7 +163,7 @@ public class InventoryFragment extends Fragment implements LoaderManager.LoaderC
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        getLoaderManager().initLoader(FORECAST_LOADER, null, this);
+        getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -208,19 +201,9 @@ public class InventoryFragment extends Fragment implements LoaderManager.LoaderC
         String sortOrder = ShoppingContract.InventoryEntry.COLUMN_NAME + " ASC";
 
 
-        Uri weatherForLocationUri = ShoppingContract.InventoryEntry.CONTENT_URI;
-
-/*           return new CursorLoader(
-               getActivity(),   // Parent activity context
-                mDataUrl,        // Table to query
-                mProjection,     // Projection to return
-                null,            // No selection clause
-                null,            // No selection arguments
-                null             // Default sort order
-        );
-        */
-        return new CursorLoader(getActivity(),
-                weatherForLocationUri,
+        Uri inventoryUri = ShoppingContract.InventoryEntry.CONTENT_URI;
+       return new CursorLoader(getActivity(),
+               inventoryUri,
                 INVENTORY_COLUMNS,
                 null,
                 null,

@@ -41,6 +41,7 @@ import yong.dealer.shopping.data.ShoppingContract.InventoryEntry;
 import yong.dealer.R;
 
 import yong.dealer.shopping.data.ShoppingContract;
+import yong.dealer.shopping.sync.InventorySyncAdapter;
 
 
 public class ShoppingActivity extends AppCompatActivity implements InventoryFragment.Callback {
@@ -60,21 +61,17 @@ public class ShoppingActivity extends AppCompatActivity implements InventoryFrag
 
         InventoryFragment inventoryFragment =  ((InventoryFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_inventory));
-        fetchAndParseData();
-        fillDatabases();
+        //fetchAndParseData();
+        //fillDatabases();
 
-        Log.i(LOG_TAG, products.get(0).category);
-        Log.i(LOG_TAG, products.get(0).food.get(1).name);
         //Log.i(LOG_TAG, products.get(0).foods.get(0).name);
         //InventoryFragment.setUseTodayLayout(!mTwoPane);
 
-       // ShoppingSyncAdapter.initializeSyncAdapter(this);
+        InventorySyncAdapter.initializeSyncAdapter(this);
     }
     public void fillDatabases(){
         if(products.size()==0)
             return;
-        ContentValues foodValues = new ContentValues();
-
         for(ShoppingItem one :products) {
             String category = one.category;
             ContentValues categoryValues = new ContentValues();
@@ -85,18 +82,21 @@ public class ShoppingActivity extends AppCompatActivity implements InventoryFrag
             Log.i(LOG_TAG, "" + category_id);
             ArrayList<ShoppingItem.Food> foods = (ArrayList) one.food;
             //Vector is synchronized
-
-            foodValues.clear();
             Vector<ContentValues> cVVector = new Vector<ContentValues>(foods.size());
             for (ShoppingItem.Food food : foods) {
+                ContentValues foodValues = new ContentValues();
+                //Need to optimize
+                //generate too many object;
+                //foodValues.clear();
                 foodValues.put(InventoryEntry.COLUMN_NAME, food.name);
                 foodValues.put(InventoryEntry.COLUMN_CATEGORY_ID, category_id);
                 foodValues.put(InventoryEntry.COLUMN_CALORIE, food.nutrition.calories);
                 foodValues.put(InventoryEntry.COLUMN_CARBOH, food.nutrition.carbohydrate);
                 foodValues.put(InventoryEntry.COLUMN_FAT, food.nutrition.fat);
                 Log.i(LOG_TAG, "" + food.nutrition.fat);
+                cVVector.add(foodValues);
             }
-            cVVector.add(foodValues);
+
             if (cVVector.size() > 0) {
                 ContentValues[] cvArray = new ContentValues[cVVector.size()];
                 cVVector.toArray(cvArray);
